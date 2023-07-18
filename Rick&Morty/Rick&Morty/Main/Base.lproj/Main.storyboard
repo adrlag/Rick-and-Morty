@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22113.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22089.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MainVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="main_id" id="BYZ-38-t0r" customClass="MainVC" customModule="Rick_Morty" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fe2-h1-Mk7">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading-icon" translatesAutoresizingMaskIntoConstraints="NO" id="m80-Uc-Exz">
+                                <rect key="frame" x="98.333333333333329" y="340.33333333333331" width="196.33333333333337" height="196.33333333333331"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="m80-Uc-Exz" secondAttribute="height" multiplier="49:49" id="f5m-FK-O9m"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="re3-po-hEE"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="m80-Uc-Exz" firstAttribute="centerX" secondItem="re3-po-hEE" secondAttribute="centerX" id="6dz-dM-K7Y"/>
+                            <constraint firstItem="m80-Uc-Exz" firstAttribute="centerY" secondItem="re3-po-hEE" secondAttribute="centerY" id="geI-yL-8XM"/>
+                            <constraint firstItem="m80-Uc-Exz" firstAttribute="width" secondItem="fe2-h1-Mk7" secondAttribute="width" multiplier="0.5" id="gtt-2h-Akh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="img" destination="m80-Uc-Exz" id="BwN-Ae-Yxn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75.572519083969468" y="-2.1126760563380285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="loading-icon" width="2560" height="1440"/>
+    </resources>
+</document>
