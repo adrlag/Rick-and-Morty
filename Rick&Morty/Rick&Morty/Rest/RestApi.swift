@@ -8,32 +8,30 @@
 import Alamofire
 import ObjectMapper
 
-let baseUrl = "https://rickandmortyapi.com/api/"
 
-open class RestApi {
+protocol RestApiDelegate {
+    func getRequestAF(endPoint: String, success: @escaping (AFDataResponse<Any>) -> Void, failure: @escaping (AFError) -> Void)
+}
+
+open class RestApi: RestApiDelegate {
     
-    public static var Manager: Alamofire.Session = {
-        
+    let baseUrl = "https://rickandmortyapi.com/api/"
+    
+    static var shared = RestApi()
+    
+    public var manager: Alamofire.Session = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 30
         configuration.timeoutIntervalForResource = 30
-
         let manager = Alamofire.Session(configuration: configuration)
-        
         return manager
     }()
-
-    static func getRequestAF(endPoint: String, success: (@escaping (AFDataResponse<Any>) -> Void), failure: (@escaping (AFError) -> Void)) {
-        
-        let headers = HTTPHeaders([
-            "Accept": "*/*",
-            "Content-Type": "application/json"
-        ])
+    
+    func getRequestAF(endPoint: String, success: @escaping (AFDataResponse<Any>) -> (), failure: @escaping (Alamofire.AFError) -> ()) {
         
         let url = "\(baseUrl)\(endPoint)"
         
-        
-        Manager.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseJSON(completionHandler: { response in
+        manager.request(url: url).validate(statusCode: 200..<300).responseJSON(completionHandler: { response in
             switch response.result {
             case .success(_):
                 success(response)
@@ -44,6 +42,19 @@ open class RestApi {
             }
             
         })
+    }
+    
+}
+
+
+extension Session {
+    
+    func request(url: String) -> DataRequest {
+        let headers = HTTPHeaders([
+            "Accept": "*/*",
+            "Content-Type": "application/json"
+        ])
+        return self.request(url, method: .get, encoding: JSONEncoding.default, headers: headers)
     }
     
 }

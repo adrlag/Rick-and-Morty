@@ -13,7 +13,6 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -41,10 +40,7 @@ class HomeVC: UIViewController {
     }
     
     @IBAction func goToLocations(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Locations", bundle: nil)
-        let newVC = storyboard.instantiateViewController(withIdentifier: "locations_id") as! LocationsVC
-        newVC.modalPresentationStyle = .fullScreen
-        newVC.modalTransitionStyle = .crossDissolve
+        let newVC = LocationsBuilder.buildLocationsModule()
         self.present(newVC, animated: true)
     }
     

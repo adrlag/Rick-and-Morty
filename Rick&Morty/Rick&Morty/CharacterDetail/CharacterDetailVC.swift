@@ -138,28 +138,18 @@ class CharacterDetailVC: ViewController {
     }
     
     @objc func goToLocation() {
-        let storyboard = UIStoryboard(name: "LocationDetail", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "location_detail_id") as! LocationDetailVC
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        
         if let id = Int(character?.location.url.split(separator: "/").last?.description ?? "") {
-            vc.locationID = id
-            self.present(vc, animated: true)
+            let newVC = LocationDetailBuilder.buildLocationDetailModule(locID: id)
+            self.present(newVC, animated: true)
         } else {
             Loaf("Unknow location", state: .info, sender: self).show()
         }
     }
     
     @objc func goToOrigin() {
-        let storyboard = UIStoryboard(name: "LocationDetail", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "location_detail_id") as! LocationDetailVC
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        
         if let id = Int(character?.origin.url.split(separator: "/").last?.description ?? "") {
-            vc.locationID = id
-            self.present(vc, animated: true)
+            let newVC = LocationDetailBuilder.buildLocationDetailModule(locID: id)
+            self.present(newVC, animated: true)
         } else {
             Loaf("Unknow origin", state: .info, sender: self).show()
         }

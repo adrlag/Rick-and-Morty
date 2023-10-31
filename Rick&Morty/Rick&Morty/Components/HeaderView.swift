@@ -67,10 +67,9 @@ class HeaderView: BaseComponent {
     }
     
     @IBAction func goLocAction(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Locations", bundle: nil)
-        let newVC = storyboard.instantiateViewController(withIdentifier: "locations_id") as! LocationsVC
-        newVC.modalPresentationStyle = .fullScreen
-        newVC.modalTransitionStyle = .crossDissolve
+        /*
+        let newVC = LocationsBuilder.buildLocationsModule()
         vc?.present(newVC, animated: true)
+         */
     }
 }

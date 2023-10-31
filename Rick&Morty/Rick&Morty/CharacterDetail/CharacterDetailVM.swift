@@ -11,7 +11,7 @@ import Alamofire
 struct CharacterDetailVM {
     
     func getCharacter(charID: Int, succeed: (@escaping (Character) -> Void), failure: (@escaping (AFError) -> Void)) {
-        RestApi.getRequestAF(endPoint: "character/\(charID)") { response in
+        RestApi.shared.getRequestAF(endPoint: "character/\(charID)") { response in
             switch response.result {
             case .success(_):
                 do {

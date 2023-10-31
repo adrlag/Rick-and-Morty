@@ -8,10 +8,26 @@
 import UIKit
 import Loaf
 
-class LocationDetailVC: ViewController {
+protocol ProtocolLocationDetailVC: AnyObject {
+    func refreshView()
+    func showServiceError()
+    func reloadCollectionView()
+}
+
+class LocationDetailVC: ViewController, ProtocolLocationDetailVC {
+    
+    /// PROTOCOLS
+    func refreshView() {
+        setUpLocationData()
+    }
+    
+    func showServiceError() {
+        loadingView.isHidden = true
+        Loaf("Data not found", state: .info, location: .bottom, sender: self).show()
+    }
+    
     
     @IBOutlet weak var headerView: HeaderView!
-    
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var typeLbl: UILabel!
     @IBOutlet weak var dimensionLbl: UILabel!
@@ -21,18 +37,8 @@ class LocationDetailVC: ViewController {
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var loadingView: LoadingView!
     
+    var protocolVM: ProtocolLocationDetailVM!
     
-    lazy var locationDetailVM : LocationDetailVM = {
-        let viewModel = LocationDetailVM()
-        return viewModel
-    }()
-    
-    var locationID: Int = 0
-    var location: Location?
-    
-    var charactersImg: [ImgSaved] = []
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
  
@@ -45,7 +51,6 @@ class LocationDetailVC: ViewController {
         residentsCollectionView.dataSource = self
         residentsCollectionView.register(UINib(nibName: "ImgCharacterCell", bundle: nil), forCellWithReuseIdentifier: "ImgCharacterCell")
         
-        charactersImg = UserDefaults.standard.getImages()
         getLocation()
     }
     
@@ -55,49 +60,43 @@ class LocationDetailVC: ViewController {
     
     func getLocation() {
         loadingView.isHidden = false
-        locationDetailVM.getLocation(locID: locationID) { [self] response in
-            DispatchQueue.main.async { [self] in
-                location = response
-                setUpLocationData()
-                residentsCollectionView.reloadData()
-            }
-        } failure: { [self] error in
-            Loaf("Data not found", state: .info, location: .bottom, sender: self).show()
-            loadingView.isHidden = true
-        }
+        protocolVM.getLocation()
+    }
+    
+    func reloadCollectionView() {
+        residentsCollectionView.reloadData()
     }
     
     func setUpLocationData() {
-        nameLbl.text = location?.name
-        typeLbl.text = location?.type
-        dimensionLbl.text = location?.dimension
+        nameLbl.text = protocolVM.location?.name
+        typeLbl.text = protocolVM.location?.type
+        dimensionLbl.text = protocolVM.location?.dimension
         infoView.isHidden = false
         loadingView.isHidden = true
+        residentsCollectionView.reloadData()
     }
-    
+
 }
 
 
 extension LocationDetailVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return location?.residents.count ?? 0
+        return protocolVM.location?.residents.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = residentsCollectionView.dequeueReusableCell(withReuseIdentifier: "ImgCharacterCell", for: indexPath) as! ImgCharacterCell
         
-        let resident = location?.residents[indexPath.item].split(separator: "/").last?.description
-        
-        if let imgSaved = charactersImg.first(where: {$0.id == Int(resident ?? "0")})?.img {
-            cell.img.image = UIImage(data: imgSaved)
+        if let resident = Int(protocolVM.location?.residents[indexPath.item].split(separator: "/").last?.description ?? "") {
+            cell.img.image = protocolVM.getCharacterImage(charID: resident)
         }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let resident = location?.residents[indexPath.item].split(separator: "/").last
+        let resident = protocolVM.location?.residents[indexPath.item].split(separator: "/").last
         goToCharacterDetail(characterID: Int(resident?.description ?? "") ?? 0)
     }
     

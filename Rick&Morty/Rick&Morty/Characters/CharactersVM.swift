@@ -12,7 +12,7 @@ struct CharactersVM {
     
     // MARK: GET EVENTS
     func getCharacters(page: Int, filters: String, succeed: (@escaping (Characters) -> Void), failure: (@escaping (AFError) -> Void)) {
-        RestApi.getRequestAF(endPoint: "character?page=\(page)\(filters)") { response in
+        RestApi.shared.getRequestAF(endPoint: "character?page=\(page)\(filters)") { response in
             switch response.result {
             case .success(_):
                 do {

@@ -11,7 +11,7 @@ import Alamofire
 struct EpisodeDetailVM {
     
     func getEpisode(episodeID: Int, succeed: (@escaping (Episode) -> Void), failure: (@escaping (AFError) -> Void)) {
-        RestApi.getRequestAF(endPoint: "episode/\(episodeID)") { response in
+        RestApi.shared.getRequestAF(endPoint: "episode/\(episodeID)") { response in
             switch response.result {
             case .success(_):
                 do {

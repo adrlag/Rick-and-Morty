@@ -8,23 +8,36 @@
 import UIKit
 import Loaf
 
-class LocationsVC: ViewController {
+
+protocol ProtocolLocationsVC: AnyObject {
+    func updateTable()
+    func showServiceError()
+    func hideFilterBtn()
+}
+
+class LocationsVC: ViewController, ProtocolLocationsVC {
+    
+    /// PROTOCOLS
+    func updateTable() {
+        locationsTableView.reloadData()
+    }
+    
+    func showServiceError() {
+        Loaf("Error retriving data", state: .error, location: .bottom, sender: self).show(.average)
+    }
+    
+    func hideFilterBtn() {
+        hiddenBtnFilter = true
+    }
     
     @IBOutlet weak var headerView: HeaderView!
     @IBOutlet weak var locationsTableView: UITableView!
     @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet weak var loadingView: LoadingView!
     
+    var protocolVM: ProtocolLocationsVM!
     
-    lazy var locationsVM : LocationsVM = {
-        let viewModel = LocationsVM()
-        return viewModel
-    }()
-    
-    var filters: String = ""
-    var pag: Int = 1
-    var totalPags: Int = 0
-    var locations: [Location] = []
+    var hiddenBtnFilter = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +50,8 @@ class LocationsVC: ViewController {
         locationsTableView.register(UINib(nibName: "LocationCell", bundle: nil), forCellReuseIdentifier: "LocationCell")
         
         filterBtn.layer.cornerRadius = filterBtn.bounds.height/2
-        
+        filterBtn.isHidden = hiddenBtnFilter
+
         getAllLocations()
     }
     
@@ -46,19 +60,7 @@ class LocationsVC: ViewController {
     }
     
     func getAllLocations() {
-        loadingView.isHidden = false
-        locationsVM.getLocations(page: pag, filters: filters) { response in
-            DispatchQueue.main.async { [self] in
-                locations = locations + response.results
-                locationsTableView.reloadData()
-                totalPags = response.info.pages
-                pag += 1
-                loadingView.isHidden = true
-            }
-        } failure: { [self] error in
-            Loaf("Data not found", state: .info, location: .bottom, sender: self).show()
-            loadingView.isHidden = true
-        }
+        protocolVM.getAllLocations()
     }
     
     @IBAction func openFilters(_ sender: Any) {
@@ -67,14 +69,11 @@ class LocationsVC: ViewController {
         vc.modalPresentationStyle = .pageSheet
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .pageSheet
-        
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.custom(resolver: { context in 350})]
         }
-        
         vc.modalTransitionStyle = .coverVertical
         vc.from = "locations"
-        
         self.present(vc, animated: true)
     }
 
@@ -84,7 +83,7 @@ extension LocationsVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        return protocolVM.locations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,8 +91,7 @@ extension LocationsVC: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         
-        let location = locations[indexPath.row]
-
+        let location = protocolVM.locations[indexPath.row]
         cell.nameLbl.text = location.name
         cell.typeLbl.text = location.type
         cell.dimensionsLbl.text = location.dimension
@@ -102,8 +100,8 @@ extension LocationsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let location = locations[indexPath.row]
-        goToLocationDetail(locID: location.id)
+        let location = protocolVM.locations[indexPath.row]
+        goToLocationDetail(locationID: location.id)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -111,7 +109,7 @@ extension LocationsVC: UITableViewDelegate, UITableViewDataSource {
         let contentHeight = scrollView.contentSize.height
 
         if offsetY > contentHeight - scrollView.frame.size.height {
-            if (pag <= totalPags) {
+            if protocolVM.moreData() {
                 getAllLocations()
             }
         }

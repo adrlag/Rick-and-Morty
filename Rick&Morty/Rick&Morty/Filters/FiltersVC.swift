@@ -22,7 +22,6 @@ class FiltersVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var specieTF: UITextField!
     
     var from: String = ""
-    
     var status: String = ""
     var gender: String = ""
     
@@ -106,42 +105,17 @@ class FiltersVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func applyFilters(_ sender: Any) {
+        var newVC = UIViewController()
         switch from {
-        case "characters": filterCharacters()
-        case "episodes": filterEpisodes()
-        case "locations": filterLocations()
-        default: print("*** BAD FILTER")
+        case "characters":
+            newVC = FiltersVM.shared.filterCharacters(name: nameTF.text, type: typeTF.text, dimension: dimensionTF.text, specie: specieTF.text, status: status, gender: gender)
+        case "episodes":
+            newVC = FiltersVM.shared.filterEpisodes(name: nameTF.text, episode: episodeTF.text)
+        case "locations":
+            newVC = FiltersVM.shared.filterLocations(name: nameTF.text, type: typeTF.text, dimension: dimensionTF.text)
+        default:
+            print("*** BAD FILTER")
         }
-    }
-    
-    func filterEpisodes() {
-        let storyboard = UIStoryboard(name: "Episodes", bundle: nil)
-        let newVC = storyboard.instantiateViewController(withIdentifier: "episodes_id") as! EpisodesVC
-        newVC.modalPresentationStyle = .fullScreen
-        newVC.modalTransitionStyle = .crossDissolve
-        newVC.filters = "&name=\(nameTF.text ?? "")&episode=\(episodeTF.text ?? "")"
-        
         self.present(newVC, animated: true)
     }
-    
-    func filterLocations() {
-        let storyboard = UIStoryboard(name: "Locations", bundle: nil)
-        let newVC = storyboard.instantiateViewController(withIdentifier: "locations_id") as! LocationsVC
-        newVC.modalPresentationStyle = .fullScreen
-        newVC.modalTransitionStyle = .crossDissolve
-        newVC.filters = "&name=\(nameTF.text ?? "")&type=\(typeTF.text ?? "")&dimension=\(dimensionTF.text ?? "")"
-        
-        self.present(newVC, animated: true)
-    }
-    
-    func filterCharacters() {
-        let storyboard = UIStoryboard(name: "Characters", bundle: nil)
-        let newVC = storyboard.instantiateViewController(withIdentifier: "characters_id") as! CharactersVC
-        newVC.modalPresentationStyle = .fullScreen
-        newVC.modalTransitionStyle = .crossDissolve
-        newVC.filters = "&name=\(nameTF.text ?? "")&type=\(typeTF.text ?? "")&species=\(specieTF.text ?? "")&status=\(status)&gender=\(gender)"
-        
-        self.present(newVC, animated: true)
-    }
-    
 }

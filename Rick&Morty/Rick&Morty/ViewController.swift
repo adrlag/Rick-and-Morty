@@ -34,12 +34,8 @@ class ViewController: UIViewController {
         self.present(vc, animated: true)
     }
     
-    func goToLocationDetail(locID: Int) {
-        let storyboard = UIStoryboard(name: "LocationDetail", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "location_detail_id") as! LocationDetailVC
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        vc.locationID = locID
+    func goToLocationDetail(locationID: Int) {
+        let vc = LocationDetailBuilder.buildLocationDetailModule(locID: locationID)
         self.present(vc, animated: true)
     }
 
