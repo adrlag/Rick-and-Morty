@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		80966574D1DF079F8C920706 /* Pods_Rick_Morty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E1498F2BD7B32A3B2CFB09 /* Pods_Rick_Morty.framework */; };
 		AD00CA392A629D9500EB45AD /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00CA372A629D9500EB45AD /* CharacterCell.swift */; };
 		AD00CA3A2A629D9500EB45AD /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD00CA382A629D9500EB45AD /* CharacterCell.xib */; };
 		AD00CA3F2A62A00400EB45AD /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00CA3E2A62A00400EB45AD /* MainVC.swift */; };
 		AD06C5642A667130005D1F8C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD06C5632A667130005D1F8C /* LoadingView.swift */; };
 		AD06C5662A66713E005D1F8C /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD06C5652A66713E005D1F8C /* LoadingView.xib */; };
 		AD06C5682A66D7EC005D1F8C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD06C5672A66D7EC005D1F8C /* Extensions.swift */; };
+		AD1EB5CD2C5BA76500E426BC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = AD1EB5CC2C5BA76500E426BC /* Alamofire */; };
 		AD2996612A63F114006108D4 /* EpisodesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2996602A63F114006108D4 /* EpisodesVC.swift */; };
 		AD2996632A63F11D006108D4 /* Episodes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD2996622A63F11D006108D4 /* Episodes.storyboard */; };
 		AD2996652A63F127006108D4 /* EpisodesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2996642A63F127006108D4 /* EpisodesVM.swift */; };
@@ -39,6 +39,7 @@
 		AD669D532A6588AA0007CFF4 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD669D522A6588AA0007CFF4 /* HomeVC.swift */; };
 		AD669D562A65940A0007CFF4 /* FiltersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD669D552A65940A0007CFF4 /* FiltersVC.swift */; };
 		AD669D582A6594150007CFF4 /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD669D572A6594150007CFF4 /* Filters.storyboard */; };
+		AD6E3A2C2C5BA83C00880DF0 /* Loaf in Frameworks */ = {isa = PBXBuildFile; productRef = AD6E3A2B2C5BA83C00880DF0 /* Loaf */; };
 		AD9A4D3A2A62DB1600650C44 /* CharacterDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A4D392A62DB1600650C44 /* CharacterDetailVC.swift */; };
 		AD9A4D3C2A62DB3000650C44 /* CharacterDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD9A4D3B2A62DB3000650C44 /* CharacterDetail.storyboard */; };
 		AD9A4D422A62F44600650C44 /* TVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A4D412A62F44600650C44 /* TVCell.swift */; };
@@ -77,9 +78,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07800CF0520F3A6ABBD1629F /* Pods-Rick&Morty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rick&Morty.release.xcconfig"; path = "Target Support Files/Pods-Rick&Morty/Pods-Rick&Morty.release.xcconfig"; sourceTree = "<group>"; };
-		59E1498F2BD7B32A3B2CFB09 /* Pods_Rick_Morty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rick_Morty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7490F874EAEBAF1B39F2A620 /* Pods-Rick&Morty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rick&Morty.debug.xcconfig"; path = "Target Support Files/Pods-Rick&Morty/Pods-Rick&Morty.debug.xcconfig"; sourceTree = "<group>"; };
 		AD00CA372A629D9500EB45AD /* CharacterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		AD00CA382A629D9500EB45AD /* CharacterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
 		AD00CA3E2A62A00400EB45AD /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -146,7 +144,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80966574D1DF079F8C920706 /* Pods_Rick_Morty.framework in Frameworks */,
+				AD6E3A2C2C5BA83C00880DF0 /* Loaf in Frameworks */,
+				AD1EB5CD2C5BA76500E426BC /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,23 +159,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		242E3B4DECAC44DACFCE485A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				59E1498F2BD7B32A3B2CFB09 /* Pods_Rick_Morty.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2B92BB2165054C8C8CE317FE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7490F874EAEBAF1B39F2A620 /* Pods-Rick&Morty.debug.xcconfig */,
-				07800CF0520F3A6ABBD1629F /* Pods-Rick&Morty.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		AD00CA3B2A629D9B00EB45AD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,8 +225,6 @@
 				AD2F07412A61F7690088A4AC /* Rick&Morty */,
 				ADD8E4282AF11760007C494A /* Rick&MortyTests */,
 				AD2F07402A61F7690088A4AC /* Products */,
-				2B92BB2165054C8C8CE317FE /* Pods */,
-				242E3B4DECAC44DACFCE485A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -387,17 +367,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD2F07562A61F76A0088A4AC /* Build configuration list for PBXNativeTarget "Rick&Morty" */;
 			buildPhases = (
-				6650178E5C14EC9A4FF13EAB /* [CP] Check Pods Manifest.lock */,
 				AD2F073B2A61F7690088A4AC /* Sources */,
 				AD2F073C2A61F7690088A4AC /* Frameworks */,
 				AD2F073D2A61F7690088A4AC /* Resources */,
-				F218BB2F631D4B6AC82EB5CB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Rick&Morty";
+			packageProductDependencies = (
+				AD1EB5CC2C5BA76500E426BC /* Alamofire */,
+				AD6E3A2B2C5BA83C00880DF0 /* Loaf */,
+			);
 			productName = "Rick&Morty";
 			productReference = AD2F073F2A61F7690088A4AC /* Rick&Morty.app */;
 			productType = "com.apple.product-type.application";
@@ -448,6 +430,10 @@
 				Base,
 			);
 			mainGroup = AD2F07362A61F7690088A4AC;
+			packageReferences = (
+				AD1EB5CB2C5BA76500E426BC /* XCRemoteSwiftPackageReference "Alamofire" */,
+				AD6E3A2A2C5BA83C00880DF0 /* XCRemoteSwiftPackageReference "Loaf" */,
+			);
 			productRefGroup = AD2F07402A61F7690088A4AC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -492,48 +478,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		6650178E5C14EC9A4FF13EAB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Rick&Morty-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F218BB2F631D4B6AC82EB5CB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Rick&Morty/Pods-Rick&Morty-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Rick&Morty/Pods-Rick&Morty-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Rick&Morty/Pods-Rick&Morty-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AD2F073B2A61F7690088A4AC /* Sources */ = {
@@ -734,7 +678,6 @@
 		};
 		AD2F07572A61F76A0088A4AC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7490F874EAEBAF1B39F2A620 /* Pods-Rick&Morty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -767,7 +710,6 @@
 		};
 		AD2F07582A61F76A0088A4AC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07800CF0520F3A6ABBD1629F /* Pods-Rick&Morty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -876,6 +818,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AD1EB5CB2C5BA76500E426BC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		AD6E3A2A2C5BA83C00880DF0 /* XCRemoteSwiftPackageReference "Loaf" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/schmidyy/Loaf";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AD1EB5CC2C5BA76500E426BC /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD1EB5CB2C5BA76500E426BC /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		AD6E3A2B2C5BA83C00880DF0 /* Loaf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD6E3A2A2C5BA83C00880DF0 /* XCRemoteSwiftPackageReference "Loaf" */;
+			productName = Loaf;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		AD2F074B2A61F7690088A4AC /* Rick_Morty.xcdatamodeld */ = {

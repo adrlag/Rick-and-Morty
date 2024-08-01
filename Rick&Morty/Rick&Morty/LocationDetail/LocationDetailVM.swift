@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 protocol ProtocolLocationDetailVM: AnyObject {
     var location: Location? { get }

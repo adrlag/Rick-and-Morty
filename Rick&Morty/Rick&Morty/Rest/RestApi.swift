@@ -5,9 +5,8 @@
 //  Created by Adrián Lage on 23/3/23.
 //
 
+import Foundation
 import Alamofire
-import ObjectMapper
-
 
 protocol RestApiDelegate {
     func getRequestAF(endPoint: String, success: @escaping (AFDataResponse<Any>) -> Void, failure: @escaping (AFError) -> Void)
